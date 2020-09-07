@@ -37,7 +37,7 @@ import sys
 #         else:
 #             break
 
-for 选择 in [选择列表]:
+#for 选择 in [选择列表]:
 
 
 
