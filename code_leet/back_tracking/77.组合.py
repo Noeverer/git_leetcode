@@ -22,14 +22,32 @@
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 """
 import itertools
-class Solution:
-    def combine( n: int, k: int):
-        '''
-        使用python函数库的方式
-        :param k:
-        :return:
-        '''
-        return list(itertools.combinations(list(range(1,n+1)),k))
 
+def combine( n: int, k: int):
+    '''
+    使用python函数库的方式
+    '''
+    return list(itertools.combinations(list(range(1,n+1)),k))
+
+
+
+def combine2( n: int, k: int):
+    '''
+    使用回溯的方式需要注意位置信息的更新：是从第
+    '''
+    res = []
+    def back(curr,site):
+        if len(curr) == k:
+            res.append(curr[:])
+        for sit in range(site,n+1):
+            if sit in curr:
+                continue
+            curr.append(sit)
+            back(curr,sit+1) # 相当于限定下一次座位只能从我后面以为去做
+            curr.pop()
+    back([],1)
+    return res
+
+print(combine2(4,2))
 
 
